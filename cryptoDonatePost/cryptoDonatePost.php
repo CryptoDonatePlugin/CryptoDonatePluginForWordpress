@@ -430,7 +430,7 @@ class Crypto
 		<!----shortcode pojedyńczy 7---->
 		<div class="info-title info-bitcoin">Bitcoin shortcode:</div>
 		<div><input type="text" value="[bitcoin]" class="single-crypto-shortcode" readonly/>
-		<span>*You can use shortcode only while crypto is enabled.<br></span></div>
+		<span>*You can use shortcode only while crypto is enabled. Only one shortcode on page.<br></span></div>
 		<div class="info-title info-bitcoin">Dont have bitcoin wallet?:</div>
 		<span>Create here: <a href="https://www.coinbase.com/join/5a258c3c8004c7013471f1b8">Free Bitcoin Wallet</a></span>
       </div>
@@ -510,7 +510,7 @@ class Crypto
 		</form>
 		<div class="info-title info-dogecoin">Dogecoin shortcode:</div>
 		<div><input type="text" value="[dogecoin]" class="single-crypto-shortcode" readonly/>
-		<span>*You can use shortcode only while crypto is enabled.<br></span></div>
+		<span>*You can use shortcode only while crypto is enabled. Only one shortcode on page.<br></span></div>
 		<div class="info-title info-dogecoin">Dont have dogecoin wallet?:</div>
 		<span>Create here: <a href="https://my.dogechain.info">Free Dogecoin Wallet</a></span>
       </div>
@@ -588,7 +588,7 @@ class Crypto
 		</form>
 		<div class="info-title info-ethereum">Ethereum shortcode:</div>
 		<div><input type="text" value="[ethereum]" class="single-crypto-shortcode" readonly/>
-		<span>*You can use shortcode only while crypto is enabled.<br></span></div>
+		<span>*You can use shortcode only while crypto is enabled. Only one shortcode on page.<br></span></div>
 		<div class="info-title info-ethereum">Dont have ethereum wallet?:</div>
 		<span>Create here: <a href="https://www.coinbase.com/join/5a258c3c8004c7013471f1b8">Free Ethereum Wallet</a></span>
       </div>
@@ -663,7 +663,7 @@ class Crypto
 		</form>
 		<div class="info-title info-zcash">Zcash shortcode:</div>
 		<div><input type="text" value="[zcash]" class="single-crypto-shortcode" readonly/>
-		<span>*You can use shortcode only while crypto is enabled.<br></span></div>
+		<span>*You can use shortcode only while crypto is enabled. Only one shortcode on page.<br></span></div>
 		<div class="info-title info-zcash">Dont have zcash wallet?:</div>
 		<span>Create here: <a href="https://www.coinbase.com/join/5a258c3c8004c7013471f1b8">Free Zcash Wallet</a></span>
       </div>
