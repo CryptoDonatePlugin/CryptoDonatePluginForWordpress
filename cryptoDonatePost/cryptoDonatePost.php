@@ -680,7 +680,7 @@ class Crypto
 			<div class="alert alert-info" role="alert">
   <div class="info-important">Important!</div><br>This plugin is free to use!!! The default options wallet addresses they are plugin author addresses.<br>
   Our addresses:<br>
-  <strong>Bitcoin:</strong> 13JDhP1YScpJosCbkXwWUeS9EatNKgfVmW<br>
+  <strong>Bitcoin:</strong> 3DKjSnopz5mG4VHeg4mTcHbGKLGLnH7Vaq<br>
   <strong>Dogecoin:</strong> DCQ13BmPHFv7s12xvHUfz6de2wqQbuTxFw<br>
   <strong>Ethereum:</strong> 0x828c43dae89fa5a9e3d656335830a218a6d0d9a5<br>
   If you want to help to upgrade this project in future, you can donate us also.<br>
@@ -690,9 +690,8 @@ class Crypto
 
 <div class="info-media">Our media:</div>
 <b>Site:</b> <a href="http://cryptodonateposts.com" target="_blank">http://cryptodonateposts.com</a><br>
-<b>Twitter:</b> <a href="http://cryptodonateposts.com" target="_blank">http://cryptodonateposts.com</a><br>
-<b>Fanpage:</b> <a href="http://cryptodonateposts.com" target="_blank">http://cryptodonateposts.com</a><br>
-<b>Youtube:</b> <a href="http://cryptodonateposts.com" target="_blank">http://cryptodonateposts.com</a><br>
+<b>Fanpage:</b> <a href="https://www.facebook.com/CryptoDonatePluginForWordpress" target="_blank">https://www.facebook.com/CryptoDonatePluginForWordpress</a><br>
+<b>Youtube:</b> <a href="https://www.youtube.com/channel/UCno0LQ-LemOXcyw59gUImMw" target="_blank">https://www.youtube.com/channel/UCno0LQ-LemOXcyw59gUImMw</a><br>
 <b>Github:</b> <a href="https://github.com/CryptoDonatePlugin/CryptoDonatePluginForWordpress" target="_blank">https://github.com/CryptoDonatePlugin/CryptoDonatePluginForWordpress</a><br>
 
 
