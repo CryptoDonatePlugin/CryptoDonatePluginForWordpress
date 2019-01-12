@@ -693,7 +693,7 @@ class Crypto
 <b>Twitter:</b> <a href="http://cryptodonateposts.com" target="_blank">http://cryptodonateposts.com</a><br>
 <b>Fanpage:</b> <a href="http://cryptodonateposts.com" target="_blank">http://cryptodonateposts.com</a><br>
 <b>Youtube:</b> <a href="http://cryptodonateposts.com" target="_blank">http://cryptodonateposts.com</a><br>
-<b>Discord:</b> <a href="http://cryptodonateposts.com" target="_blank">http://cryptodonateposts.com</a><br>
+<b>Github:</b> <a href="https://github.com/CryptoDonatePlugin/CryptoDonatePluginForWordpress" target="_blank">https://github.com/CryptoDonatePlugin/CryptoDonatePluginForWordpress</a><br>
 
 
 	
