@@ -3,9 +3,9 @@
  * Plugin Name:       Crypto Donate Posts
  * Description:       Add cryptocurrency donate button with payments method to your posts. Easy to use.
  * Version:           1.0.0
- * Author:            MLWEB
- * Author URI:        https://mlweb.pl
- * Text Domain:       mlweb
+ * Author:            Crypto Donate Posts
+ * Author URI:        https://cryptodonateposts.com
+ * Text Domain:       cryptodonateposts
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * GitHub Plugin URI: https://github.com/CryptoDonatePlugin/CryptoDonatePluginForWordpress
@@ -680,9 +680,9 @@ class Crypto
 			<div class="alert alert-info" role="alert">
   <div class="info-important">Important!</div><br>This plugin is free to use!!! The default options wallet addresses they are plugin author addresses.<br>
   Our addresses:<br>
-  <strong>Bitcoin:</strong> 3DKjSnopz5mG4VHeg4mTcHbGKLGLnH7Vaq<br>
+  <strong>Bitcoin:</strong> 3QwJBG3spagi2po2iLMCzHCaTWrZgA5Sw1<br>
   <strong>Dogecoin:</strong> DCQ13BmPHFv7s12xvHUfz6de2wqQbuTxFw<br>
-  <strong>Ethereum:</strong> 0x828c43dae89fa5a9e3d656335830a218a6d0d9a5<br>
+  <strong>Ethereum:</strong> 0xb469e2085bAD991C6d964Ff1E7D9F6DFfFECA819<br>
   If you want to help to upgrade this project in future, you can donate us also.<br>
   All donations goes to upgrade this plugin.<br>
   You can check what will we do in future. Just visit our site: <a href="http://cryptodonateposts.com" target="_blank">http://cryptodonateposts.com</a>
