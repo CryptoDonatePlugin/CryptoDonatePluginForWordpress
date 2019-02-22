@@ -83,18 +83,20 @@ class Crypto
 	{
 		//bitcoin
 		if( isset($_POST['btcbutton']) ){
-			$btcwallet = $_POST['btcwallet'];
-			$btcen = 1;
-	
-		global $wpdb;
+			
+			if(!empty($_POST['btcwallet'])){
+				$btcwallet = sanitize_text_field($_POST['btcwallet']);
+				$btcen = 1;
+				
+				global $wpdb;
 		$bitcoin = $wpdb->get_var(
                 $wpdb->prepare(
                     "SELECT * FROM " . $wpdb->prefix . "wallets
                     WHERE cryptocurrency = %s LIMIT 1", 'bitcoin'
                 )
             );
-
-		if ( $bitcoin > 0 ){ 
+			
+			if ( $bitcoin > 0 ){ 
 		$table_name = $wpdb->prefix . 'wallets';
 
 			$wpdb->update( 
@@ -120,13 +122,23 @@ class Crypto
 			) 
 		);	
 		}
+				
+			}
+			
+	
+		
+
+		
 			
 		}
 		//--------------------------------
 		
 		//dogecoin
 		if( isset($_POST['dogebutton']) ){
-			$dogewallet = $_POST['dogewallet'];
+			
+			if(!empty($_POST['dogewallet'])){
+				
+				$dogewallet = sanitize_text_field($_POST['dogewallet']);
 			
 			if (isset($_POST['dogeen'])) {
 
@@ -172,6 +184,11 @@ class Crypto
 			) 
 		);	
 		}
+				
+			}
+			
+			
+			
 			
 		}
 		//--------------------------------
@@ -181,7 +198,9 @@ class Crypto
 		
 		//ethereum
 		if( isset($_POST['ethbutton']) ){
-			$ethwallet = $_POST['ethwallet'];
+			
+			if(!empty($_POST['ethwallet'])){
+				$ethwallet = sanitize_text_field($_POST['ethwallet']);
 			
 			if (isset($_POST['ethen'])) {
 
@@ -227,6 +246,9 @@ class Crypto
 			) 
 		);	
 		}
+			}
+			
+			
 			
 		}
 		//--------------------------------
@@ -239,7 +261,9 @@ class Crypto
 		
 		//zcash
 		if( isset($_POST['zecbutton']) ){
-			$zecwallet = $_POST['zecwallet'];
+			
+			if(!empty($_POST['zecwallet'])){
+				$zecwallet = sanitize_text_field($_POST['zecwallet']);
 			
 			if (isset($_POST['zecen'])) {
 
@@ -285,6 +309,9 @@ class Crypto
 			) 
 		);	
 		}
+			}
+			
+			
 			
 		}
 		//--------------------------------
@@ -294,7 +321,9 @@ class Crypto
 		
 		//active
 		if( isset($_POST['activebutton']) ){
-			$activetext = $_POST['activetext'];
+			
+			if(!empty($_POST['activetext'])){
+				$activetext = sanitize_text_field($_POST['activetext']);
 
 			if (isset($_POST['activeposts'])) {
 
@@ -337,6 +366,9 @@ class Crypto
 			) 
 		);	
 		}
+			}
+			
+			
 			
 		}
 		//--------------------------------
