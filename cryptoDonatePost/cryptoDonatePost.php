@@ -14,10 +14,10 @@
 /*
  * Plugin constants
  */
-if(!defined('CRYPTO_URL'))
-	define('CRYPTO_URL', plugin_dir_url( __FILE__ ));
-if(!defined('CRYPTO_PATH'))
-	define('CRYPTO_PATH', plugin_dir_path( __FILE__ ));
+if(!defined('CDPCRYPTO_URL'))
+	define('CDPCRYPTO_URL', plugin_dir_url( __FILE__ ));
+if(!defined('CDPCRYPTO_PATH'))
+	define('CDPCRYPTO_PATH', plugin_dir_path( __FILE__ ));
  
 /*
  * Main class
@@ -27,7 +27,7 @@ if(!defined('CRYPTO_PATH'))
  *
  * This class creates the option page and add the web app script
  */
-class Crypto
+class CDPCrypto
 {
  
     /**
@@ -39,37 +39,40 @@ class Crypto
     {
 		register_activation_hook( __FILE__, array( $this, 'create_plugin_database_table' ) );
 		// Admin page calls:
-		add_action( 'admin_menu', array( $this, 'addAdminMenu' ) );
+		
+		if(!function_exists('wp_get_current_user')) {
+		include(ABSPATH . "wp-includes/pluggable.php"); 
+		}
+		
+		if (current_user_can('edit_others_posts')) {
+		add_action( 'admin_menu', array( $this, 'CDPaddAdminMenu' ) );
 		add_action( 'wp_ajax_store_admin_data', array( $this, 'storeAdminData' ) );
 		add_action('admin_init', array( $this, 'register_script'));
-		//add_action( 'admin_enqueue_scripts', array( $this, 'addAdminScripts' ) );
-		add_filter('the_content', array( $this, 'extra_content' ) ); 
-		add_shortcode( 'bitcoin', array( $this,'bitcoin_shortcode') );
-		add_shortcode( 'dogecoin', array( $this,'dogecoin_shortcode') );
-		add_shortcode( 'ethereum', array( $this,'ethereum_shortcode') );
-		add_shortcode( 'zcash', array( $this,'zcash_shortcode') );
+		add_filter('the_content', array( $this, 'CDPextra_content' ) ); 
+		add_shortcode( 'bitcoin', array( $this,'CDPbitcoin_shortcode') );
+		add_shortcode( 'dogecoin', array( $this,'CDPdogecoin_shortcode') );
+		add_shortcode( 'ethereum', array( $this,'CDPethereum_shortcode') );
+		add_shortcode( 'zcash', array( $this,'CDPzcash_shortcode') );
+		}
+		
 		
  
     }
 	
 	
-	public function addAdminMenu()
+	public function CDPaddAdminMenu()
 	{
 		add_menu_page(
 		__( 'Crypto Donate', 'crypto' ),
 		__( 'Crypto Donate', 'crypto' ),
 		'manage_options',
 		'crypto',
-		array($this, 'adminLayout'),
+		array($this, 'CDPadminLayout'),
 		plugin_dir_url( __FILE__ ) . 'img/icon.png'
 		);
 	}
 	
 	public function register_script() {
-		//wp_register_script('prefix_bootstrap', '//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js');
-		//wp_enqueue_script('prefix_bootstrap');
-		//wp_register_style('prefix_bootstrap', '//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css');
-		//wp_enqueue_style('prefix_bootstrap');
 		wp_register_style('style', plugins_url('style.css',__FILE__ ));
 		wp_enqueue_style('style');
 
@@ -79,10 +82,10 @@ class Crypto
 
 
 	
-	public function adminLayout()
+	public function CDPadminLayout()
 	{
 		//bitcoin
-		if( isset($_POST['btcbutton']) ){
+		if( isset($_POST['btcbutton']) && check_admin_referer( 'CDPadminLayout', 'btcnonce' )){
 			
 			if(!empty($_POST['btcwallet'])){
 				$btcwallet = sanitize_text_field($_POST['btcwallet']);
@@ -134,7 +137,7 @@ class Crypto
 		//--------------------------------
 		
 		//dogecoin
-		if( isset($_POST['dogebutton']) ){
+		if( isset($_POST['dogebutton']) && check_admin_referer( 'CDPadminLayout', 'dogenonce' )){
 			
 			if(!empty($_POST['dogewallet'])){
 				
@@ -197,7 +200,7 @@ class Crypto
 		//--------------------------------
 		
 		//ethereum
-		if( isset($_POST['ethbutton']) ){
+		if( isset($_POST['ethbutton']) && check_admin_referer( 'CDPadminLayout', 'ethnonce' ) ){
 			
 			if(!empty($_POST['ethwallet'])){
 				$ethwallet = sanitize_text_field($_POST['ethwallet']);
@@ -260,7 +263,7 @@ class Crypto
 		//--------------------------------
 		
 		//zcash
-		if( isset($_POST['zecbutton']) ){
+		if( isset($_POST['zecbutton']) && check_admin_referer( 'CDPadminLayout', 'zecnonce' )){
 			
 			if(!empty($_POST['zecwallet'])){
 				$zecwallet = sanitize_text_field($_POST['zecwallet']);
@@ -320,7 +323,7 @@ class Crypto
 		//--------------------------------
 		
 		//active
-		if( isset($_POST['activebutton']) ){
+		if( isset($_POST['activebutton']) && check_admin_referer( 'CDPadminLayout', 'activenonce' )){
 			
 			if(!empty($_POST['activetext'])){
 				$activetext = sanitize_text_field($_POST['activetext']);
@@ -393,6 +396,7 @@ class Crypto
 			<td><input type="checkbox" name="activeposts"/></td>
 			<td>
 			<input class="change-button" type="submit" value="Change" name="activebutton"/>
+			<?php wp_nonce_field( 'CDPadminLayout', 'activenonce' ); ?>
 			</td>
 			</tr>
 			</table></form>
@@ -456,6 +460,7 @@ class Crypto
 		
 		<tr>
 		<td style="width:180px;"><input class="change-button" type="submit" value="Change" name="btcbutton"/></td> <!----change 3---->
+		<?php wp_nonce_field( 'CDPadminLayout', 'btcnonce' ); ?>
 		</tr>
 		</table>
 		</form>
@@ -537,6 +542,7 @@ class Crypto
 		</tr>
 		<tr>
 		<td style="width:180px;"><input class="change-button" type="submit" value="Change" name="dogebutton"/></td>
+		<?php wp_nonce_field( 'CDPadminLayout', 'dogenonce' ); ?>
 		</tr>
 		</table>
 		</form>
@@ -615,6 +621,7 @@ class Crypto
 		</tr>
 		<tr>
 		<td style="width:180px;"><input class="change-button" type="submit" value="Change" name="ethbutton"/></td>
+		<?php wp_nonce_field( 'CDPadminLayout', 'ethnonce' ); ?>
 		</tr>
 		</table>
 		</form>
@@ -690,6 +697,7 @@ class Crypto
 		</tr>
 		<tr>
 		<td style="width:180px;"><input class="change-button" type="submit" value="Change" name="zecbutton"/></td>
+		<?php wp_nonce_field( 'CDPadminLayout', 'zecnonce' ); ?>
 		</tr>
 		</table>
 		</form>
@@ -737,7 +745,7 @@ class Crypto
 	
 	
 	//bitcoin shortcode
-	function bitcoin_shortcode() {
+	function CDPbitcoin_shortcode() {
 	
 	global $wpdb;
 	$data = "";
@@ -822,7 +830,7 @@ class Crypto
 	
 	//dogecoin shortcode
 	
-	function dogecoin_shortcode() {
+	function CDPdogecoin_shortcode() {
 	
 	global $wpdb;
 	$dogewallet='';
@@ -905,7 +913,7 @@ class Crypto
 	}
 	
 	//ethereum shortcode
-	function ethereum_shortcode() {
+	function CDPethereum_shortcode() {
 	
 	global $wpdb;
 	$ethwallet='';
@@ -984,7 +992,7 @@ class Crypto
 	
 	
 	//zcash shortcode
-	function zcash_shortcode() {
+	function CDPzcash_shortcode() {
 	
 	global $wpdb;
 	$zecwallet='';
@@ -1064,7 +1072,7 @@ class Crypto
 	
 	
 	
-	function extra_content ($content) {
+	function CDPextra_content ($content) {
 		
 		global $wpdb;
 		
@@ -1418,6 +1426,6 @@ class Crypto
 /*
  * Starts our plugin class, easy!
  */
-new Crypto();
+new CDPCrypto();
 
 ?>
