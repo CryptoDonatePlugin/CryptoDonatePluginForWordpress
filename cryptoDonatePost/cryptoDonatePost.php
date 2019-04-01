@@ -44,16 +44,18 @@ class CDPCrypto
 		include(ABSPATH . "wp-includes/pluggable.php"); 
 		}
 		
-		if (current_user_can('edit_others_posts')) {
+		
 		add_action( 'admin_menu', array( $this, 'CDPaddAdminMenu' ) );
 		add_action( 'wp_ajax_store_admin_data', array( $this, 'storeAdminData' ) );
 		add_action('admin_init', array( $this, 'register_script'));
+		
+		
+		
 		add_filter('the_content', array( $this, 'CDPextra_content' ) ); 
 		add_shortcode( 'bitcoin', array( $this,'CDPbitcoin_shortcode') );
 		add_shortcode( 'dogecoin', array( $this,'CDPdogecoin_shortcode') );
 		add_shortcode( 'ethereum', array( $this,'CDPethereum_shortcode') );
 		add_shortcode( 'zcash', array( $this,'CDPzcash_shortcode') );
-		}
 		
 		
  
@@ -85,7 +87,7 @@ class CDPCrypto
 	public function CDPadminLayout()
 	{
 		//bitcoin
-		if( isset($_POST['btcbutton']) && check_admin_referer( 'CDPadminLayout', 'btcnonce' )){
+		if( isset($_POST['btcbutton']) ){
 			
 			if(!empty($_POST['btcwallet'])){
 				$btcwallet = sanitize_text_field($_POST['btcwallet']);
@@ -137,7 +139,7 @@ class CDPCrypto
 		//--------------------------------
 		
 		//dogecoin
-		if( isset($_POST['dogebutton']) && check_admin_referer( 'CDPadminLayout', 'dogenonce' )){
+		if( isset($_POST['dogebutton']) ){
 			
 			if(!empty($_POST['dogewallet'])){
 				
@@ -200,7 +202,7 @@ class CDPCrypto
 		//--------------------------------
 		
 		//ethereum
-		if( isset($_POST['ethbutton']) && check_admin_referer( 'CDPadminLayout', 'ethnonce' ) ){
+		if( isset($_POST['ethbutton'])  ){
 			
 			if(!empty($_POST['ethwallet'])){
 				$ethwallet = sanitize_text_field($_POST['ethwallet']);
@@ -263,7 +265,7 @@ class CDPCrypto
 		//--------------------------------
 		
 		//zcash
-		if( isset($_POST['zecbutton']) && check_admin_referer( 'CDPadminLayout', 'zecnonce' )){
+		if( isset($_POST['zecbutton']) ){
 			
 			if(!empty($_POST['zecwallet'])){
 				$zecwallet = sanitize_text_field($_POST['zecwallet']);
@@ -323,7 +325,7 @@ class CDPCrypto
 		//--------------------------------
 		
 		//active
-		if( isset($_POST['activebutton']) && check_admin_referer( 'CDPadminLayout', 'activenonce' )){
+		if( isset($_POST['activebutton']) ){
 			
 			if(!empty($_POST['activetext'])){
 				$activetext = sanitize_text_field($_POST['activetext']);
@@ -396,7 +398,7 @@ class CDPCrypto
 			<td><input type="checkbox" name="activeposts"/></td>
 			<td>
 			<input class="change-button" type="submit" value="Change" name="activebutton"/>
-			<?php wp_nonce_field( 'CDPadminLayout', 'activenonce' ); ?>
+			
 			</td>
 			</tr>
 			</table></form>
@@ -460,14 +462,14 @@ class CDPCrypto
 		
 		<tr>
 		<td style="width:180px;"><input class="change-button" type="submit" value="Change" name="btcbutton"/></td> <!----change 3---->
-		<?php wp_nonce_field( 'CDPadminLayout', 'btcnonce' ); ?>
+		
 		</tr>
 		</table>
 		</form>
 		<!----shortcode pojedyńczy 7---->
 		<div class="info-title info-bitcoin">Bitcoin shortcode:</div>
 		<div><input type="text" value="[bitcoin]" class="single-crypto-shortcode" readonly/>
-		<span>*You can use shortcode only while crypto is enabled. Only one shortcode on page.<br></span></div>
+		<span style="font-style: italic;">*You can use shortcode only while crypto is enabled. Only one shortcode on page.<br></span></div>
 		<div class="info-title info-bitcoin">Dont have bitcoin wallet?:</div>
 		<span>Create here: <a href="https://www.coinbase.com/join/5a258c3c8004c7013471f1b8">Free Bitcoin Wallet</a></span>
       </div>
@@ -542,13 +544,13 @@ class CDPCrypto
 		</tr>
 		<tr>
 		<td style="width:180px;"><input class="change-button" type="submit" value="Change" name="dogebutton"/></td>
-		<?php wp_nonce_field( 'CDPadminLayout', 'dogenonce' ); ?>
+		
 		</tr>
 		</table>
 		</form>
 		<div class="info-title info-dogecoin">Dogecoin shortcode:</div>
 		<div><input type="text" value="[dogecoin]" class="single-crypto-shortcode" readonly/>
-		<span>*You can use shortcode only while crypto is enabled. Only one shortcode on page.<br></span></div>
+		<span style="font-style: italic;">*You can use shortcode only while crypto is enabled. Only one shortcode on page.<br></span></div>
 		<div class="info-title info-dogecoin">Dont have dogecoin wallet?:</div>
 		<span>Create here: <a href="https://my.dogechain.info">Free Dogecoin Wallet</a></span>
       </div>
@@ -621,13 +623,13 @@ class CDPCrypto
 		</tr>
 		<tr>
 		<td style="width:180px;"><input class="change-button" type="submit" value="Change" name="ethbutton"/></td>
-		<?php wp_nonce_field( 'CDPadminLayout', 'ethnonce' ); ?>
+		
 		</tr>
 		</table>
 		</form>
 		<div class="info-title info-ethereum">Ethereum shortcode:</div>
 		<div><input type="text" value="[ethereum]" class="single-crypto-shortcode" readonly/>
-		<span>*You can use shortcode only while crypto is enabled. Only one shortcode on page.<br></span></div>
+		<span style="font-style: italic;">*You can use shortcode only while crypto is enabled. Only one shortcode on page.<br></span></div>
 		<div class="info-title info-ethereum">Dont have ethereum wallet?:</div>
 		<span>Create here: <a href="https://www.coinbase.com/join/5a258c3c8004c7013471f1b8">Free Ethereum Wallet</a></span>
       </div>
@@ -697,13 +699,13 @@ class CDPCrypto
 		</tr>
 		<tr>
 		<td style="width:180px;"><input class="change-button" type="submit" value="Change" name="zecbutton"/></td>
-		<?php wp_nonce_field( 'CDPadminLayout', 'zecnonce' ); ?>
+		
 		</tr>
 		</table>
 		</form>
 		<div class="info-title info-zcash">Zcash shortcode:</div>
 		<div><input type="text" value="[zcash]" class="single-crypto-shortcode" readonly/>
-		<span>*You can use shortcode only while crypto is enabled. Only one shortcode on page.<br></span></div>
+		<span style="font-style: italic;">*You can use shortcode only while crypto is enabled. Only one shortcode on page.<br></span></div>
 		<div class="info-title info-zcash">Dont have zcash wallet?:</div>
 		<span>Create here: <a href="https://www.coinbase.com/join/5a258c3c8004c7013471f1b8">Free Zcash Wallet</a></span>
       </div>
@@ -720,9 +722,10 @@ class CDPCrypto
 			<div class="alert alert-info" role="alert">
   <div class="info-important">Important!</div><br>This plugin is free to use!!! The default options wallet addresses they are plugin author addresses.<br>
   Our addresses:<br>
-  <strong>Bitcoin:</strong> 3QwJBG3spagi2po2iLMCzHCaTWrZgA5Sw1<br>
+  <strong>Bitcoin:</strong> 38YcpK8qoxfrK8Dk5zT9XjM1VhuGKpCK3N<br>
   <strong>Dogecoin:</strong> DCQ13BmPHFv7s12xvHUfz6de2wqQbuTxFw<br>
   <strong>Ethereum:</strong> 0xb469e2085bAD991C6d964Ff1E7D9F6DFfFECA819<br>
+  <strong>Paypal:</strong> https://paypal.me/jatazdzary<br>
   If you want to help to upgrade this project in future, you can donate us also.<br>
   All donations goes to upgrade this plugin.<br>
   You can check what will we do in future. Just visit our site: <a href="http://cryptodonateposts.com" target="_blank">http://cryptodonateposts.com</a>
